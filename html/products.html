@@ -35,28 +35,29 @@
         .login{
             height: 40px;
             padding-left: 50px;
-            width: 60px;
-            font-size: 18px;
+            width: 120px;
+            font-size: 20px;
             border-radius: 5px;
         }
         .reg{
             height: 40px;
             padding-left: 50px;
-            width: 80px;
-            font-size: 18px;
+            width: 130px;
+            font-size: 20px;
             border-radius: 5px;
         }
         .car{
             height: 40px;
             padding-left: 50px;
-            width: 60px;
-            font-size: 18px;
+            width: 130px;
+            font-size: 20px;
             border-radius: 5px;
         }
+       
         .zero{
             position: absolute;
-            margin-left: 440px;
-            margin-top: 12px;
+            margin-left: 458px;
+            margin-top: 10px;
         }
         .box{
             margin-left: 1100px;
@@ -69,7 +70,7 @@
         .san{
             margin-left: 1135px;
             position: absolute;
-            margin-top: -50px;
+            margin-top: -55px;
         }
         img{
             height: 28px;
@@ -77,12 +78,12 @@
         .regi{
             margin-left: 1300px;
             position: absolute;
-            margin-top: -50px;
+            margin-top: -55px;
         }
         .cart{
             margin-left: 1485px;
             position: absolute;
-            margin-top: -50px;
+            margin-top: -55px;
         }
         .us{
             font-size: 70px;
@@ -135,7 +136,7 @@
             
         }
          .productcard .dis{
-            color: darkgrey;
+            color: black;
             text-align: center;
             font-size: 25px;
         } 
@@ -145,7 +146,7 @@
         }
         .productcard h4{
            text-align: center;
-           color: darkgray;
+           color: black;
            font-size: 25px;
         }
         #detail{
@@ -181,9 +182,9 @@
         <a href="contactus.html">Contact</a>
         </div>
         <div class="box">
-        <input type="text" value="Login" class="login" id="hii" href="">
-        <input type="text" value="Register" class="reg" id="hlo" href="">
-        <input type="text" value="Cart" class="car" id="hmm" href=""><span class="zero" id="start">(0)</span>
+        <input type="button" value="Login" class="login" id="hii" href="">
+        <input type="button" value="Register" class="reg" id="hlo" href="">
+        <input type="button" value="Cart" class="car" id="hmm" href=""><span class="zero" id="start">(0)</span>
     </div>
     <div class="images">
     <img class="san" src="../images/sandy2.png">
@@ -193,51 +194,76 @@
     </div><br><br><br>
     <p class="us"> Latest Products</p><hr><br><br><br>
     <nav>
-        <button id="all">All</button>
-        <button id="men">Men's Clothing</button>
-        <button id="women">Women's Clothing</button>
-        <button id="jewelery">Jewelery</button>
-        <button id="electronics">Electronics</button>
+        <button class="btn" id="all" onclick="filterData('all',this)">All</button>
+        <button  class="btn" id="men" onclick="filterData('men\'s clothing',this)">Men's Clothing</button>
+        <button  class="btn" id="women" onclick="filterData('women\'s clothing',this)">Women's Clothing</button>
+        <button  class="btn" id="jewelery" onclick="filterData('jewelery',this)">Jewelery</button>
+        <button  class="btn" id="electronics" onclick="filterData('electronics',this)">Electronics</button>
       </nav>
       <div id="container"></div>
       <p class="anil">Made with ❤️ by<a class="lil1"> Beluguppa Anil</a></p><br><br>
 
-      <script>
-                fetch("api.json")
-        .then((respone)=>{return respone.json()})
-        .then((data)=>{
-            console.log(data)
-            const productdata=data;
-           const containercards= productdata.map((product)=>{
+     
+    <script>
+    let allData = [];
 
-                 console.log(product)
-            return(
-                     `
-                 <div class="productcard">
-                        <img class="image" src=${product.image} alt=${product.photo}>
-                         <h2>${product.title.substring(0,12)}...</h2>
-                        <p class="dis">${product.description.substring(0,90)}...</p><hr>
-                        <h4>$${product.price}</h4>
-                        <hr>
-                       <button id="detail">Details</button>
-                        <button id="detail">Add to Cart</button>
-                      </div>
+    // Fetch data from API
+    fetch("api.json")
+        .then((response) => response.json())
+        .then((data) => {
+            allData = data; // Store all data globally
+            displayProducts(allData); // Display all products initially
+        })
+        .catch((error) => {
+            console.error(error);
+        });
 
-                     `
-             )
-            
-             })
-             const container=document.getElementById('container');
-             container.innerHTML=containercards.join('');
-        
-            
-         })
-       
-        
-         .catch((error)=>{
-             console.log(error);
-    
-          })
-      </script>
+    // Function to display products
+    function displayProducts(products) {
+        const container = document.getElementById("container");
+        const containerCards = products.map((product) => {
+            return `
+                <div class="productcard">
+                    <img class="image" src="${product.image}" alt="${product.photo}">
+                    <h2>${product.title.substring(0, 12)}...</h2>
+                    <p class="dis">${product.description.substring(0, 90)}...</p><hr>
+                    <h4>$${product.price}</h4>
+                    <hr>
+                    <button id="detail">Details</button>
+                    <button id="detail">Add to Cart</button>
+                </div>
+            `;
+        });
+        container.innerHTML = containerCards.join("");
+
+    //     // Add event listeners to buttons
+        const buttons = container.querySelectorAll(".btn");
+        buttons.forEach((button) => {
+            button.addEventListener("click", handleButtonClick);
+        });
+    }
+
+    // Filter products based on category
+    function filterData(category, button) {
+        let filteredData;
+        if (category === "all") {
+            filteredData = allData; // Display all items
+        } else {
+            filteredData = allData.filter((item) => item.category.toLowerCase() === category.toLowerCase());
+        }
+        displayProducts(filteredData);
+
+        // Update button styles
+        const buttons = document.querySelectorAll(".btn");
+        buttons.forEach((btn) => {
+            btn.classList.remove("active");
+            btn.style.backgroundColor = "white";
+            btn.style.color = "black";
+        });
+        button.classList.add("active");
+        button.style.backgroundColor = "orange";
+        button.style.color = "white";
+    }
+</script>
 </body>
 </html>
