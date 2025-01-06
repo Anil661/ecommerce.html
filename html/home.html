@@ -224,5 +224,66 @@
         <button  class="btn" id="electronics" onclick="filterData('electronics',this)">Electronics</button>
       </nav>
       <div id="container"></div>
+      <script>
+        let allData = [];
+    
+        // Fetch data from API
+        fetch("api.json")
+            .then((response) => response.json())
+            .then((data) => {
+                allData = data; // Store all data globally
+                displayProducts(allData); // Display all products initially
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    
+        // Function to display products
+        function displayProducts(products) {
+            const container = document.getElementById("container");
+            const containerCards = products.map((product) => {
+                return `
+                    <div class="productcard">
+                        <img class="image" src="${product.image}" alt="${product.photo}">
+                        <h2>${product.title.substring(0, 12)}...</h2>
+                        <p class="dis">${product.description.substring(0, 90)}...</p><hr>
+                        <h4>$${product.price}</h4>
+                        <hr>
+                        <button id="detail">Details</button>
+                        <button id="detail">Add to Cart</button>
+                    </div>
+                `;
+            });
+            container.innerHTML = containerCards.join("");
+    
+        //     // Add event listeners to buttons
+            const buttons = container.querySelectorAll(".btn");
+            buttons.forEach((button) => {
+                button.addEventListener("click", handleButtonClick);
+            });
+        }
+    
+        // Filter products based on category
+        function filterData(category, button) {
+            let filteredData;
+            if (category === "all") {
+                filteredData = allData; // Display all items
+            } else {
+                filteredData = allData.filter((item) => item.category.toLowerCase() === category.toLowerCase());
+            }
+            displayProducts(filteredData);
+    
+            // Update button styles
+            const buttons = document.querySelectorAll(".btn");
+            buttons.forEach((btn) => {
+                btn.classList.remove("active");
+                btn.style.backgroundColor = "white";
+                btn.style.color = "black";
+            });
+            button.classList.add("active");
+            button.style.backgroundColor = "orange";
+            button.style.color = "white";
+        }
+    </script>
 </body>
 </html>
