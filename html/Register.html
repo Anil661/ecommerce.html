@@ -53,10 +53,14 @@
             font-size: 20px;
             border-radius: 5px;
         }
+        button{
+            height: 35px;
+            width: 135px;
+        }
         .zero{
             position: absolute;
-            margin-left: 455px;
-            margin-top: 10px;
+            margin-left:0px;
+            margin-top: 0px;
         }
         .box{
             margin-left: 1100px;
@@ -66,8 +70,11 @@
             display: flex;
             column-gap: 50px;  
         }
+        button:hover{
+            background-color: darkmagenta;
+        }
         .san{
-            margin-left: 1135px;
+            margin-left: 1145px;
             position: absolute;
             margin-top: -55px;
         }
@@ -75,26 +82,14 @@
             height: 28px;
         }
         .regi{
-            margin-left: 1300px;
+            margin-left: 1315px;
             position: absolute;
             margin-top: -55px;
         }
         .cart{
-            margin-left: 1485px;
+            margin-left: 1495px;
             position: absolute;
             margin-top: -55px;
-        }
-        .login:hover{
-            background-color: darkolivegreen;
-            color: aliceblue;
-        }
-        .reg:hover{
-            background-color: darkolivegreen;
-            color: aliceblue;
-        }
-        .car:hover{
-            background-color: darkolivegreen;
-            color: aliceblue;
         }
         .address{
             margin-left: 650px;
@@ -138,15 +133,17 @@
     <div class="body">
         <h1 class="Ecommerce">Ecommerce</h1>
         <div class="layout">
-        <a href="">Home</a>
-        <a href="">Products</a>
+        <a href="home.html">Home</a>
+        <a href="products.html">Products</a>
         <a href="about us.html">About</a>
         <a href="contactus.html">Contact</a>
         </div>
         <div class="box">
-        <input type="button" value="Login" class="login" id="hii"  href="login.html">
-        <input type="button" value="Register" class="reg" id="hlo" href="Register.html">
-        <input type="button" value="Cart" class="car" id="hmm" href=""><span class="zero" id="start">(0)</span>
+            <button><a class="login" id="hii" href="login.html">Login</a></button>
+            <button><a  class="reg" id="hlo" href="Register.html">Register</a></button>
+        <!-- <input type="button" value="Login" class="login" id="hii"  href="login.html"> -->
+        <!-- <input type="button" value="Register" class="reg" id="hlo" href="Register.html"> -->
+        <button><a class="car" id="hmm" href="cart2.html"> Cart<span class="zero" id="start">(0)</span></a></button>
     </div>
     <div class="images">
     <img class="san" src="../images/sandy2.png">

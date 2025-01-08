@@ -5,6 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
     <style>
+                 .layout{
+            margin-left: 600px;
+            padding: 20px;
+            position: absolute;
+            margin-top: -70px;
+            display: flex;
+            column-gap: 40px; 
+        }
+        a{
+            text-decoration: none;
+            font-size: 20px;
+            color: black;
+        }
+        a:hover{
+            color: darkgrey;
+        }
+        .Ecommerce{
+            margin-left: 80px;
+            font-size: 40px;
+        }
+        .body{
+            margin-top: 5px;
+            background-color: azure;
+            height: 100px;
+            width: 1690px;
+            border-top: 100px;
+        }
+        .login{
+            height: 40px;
+            padding-left: 50px;
+            width: 120px;
+            font-size: 20px;
+            border-radius: 5px;
+        }
+        .reg{
+            height: 40px;
+            padding-left: 50px;
+            width: 130px;
+            font-size: 20px;
+            border-radius: 5px;
+        }
+        .car{
+            height: 40px;
+            padding-left: 50px;
+            width: 130px;
+            font-size: 20px;
+            border-radius: 5px;
+        }
+       
+        .zero{
+            position: absolute;
+            margin-left: 458px;
+            margin-top: 10px;
+        }
+        .box{
+            margin-left: 1100px;
+            padding: 20px;
+            position: absolute;
+            margin-top: -80px;
+            display: flex;
+            column-gap: 50px;  
+        }
+        .san{
+            margin-left: 1135px;
+            position: absolute;
+            margin-top: -55px;
+        }
+        img{
+            height: 28px;
+        }
+        .regi{
+            margin-left: 1300px;
+            position: absolute;
+            margin-top: -55px;
+        }
+        .cart{
+            margin-left: 1485px;
+            position: absolute;
+            margin-top: -55px;
+        }
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -107,6 +187,25 @@
     </style>
 </head>
 <body>
+    <div class="body">
+        <h1 class="Ecommerce">Ecommerce</h1>
+        <div class="layout">
+        <a href="home.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about us.html">About</a>
+        <a href="contactus.html">Contact</a>
+        </div>
+        <div class="box">
+        <input type="button" value="Login" class="login" id="hii" href="">
+        <input type="button" value="Register" class="reg" id="hlo" href="">
+        <input type="button" value="Cart" class="car" id="hmm" href=""><span id="cart_amount" class="zero" id="start">(0)</span>
+    </div>
+    <div class="images">
+    <img class="san" src="../images/sandy2.png">
+    <img class="regi" src="../images/registration.png">
+    <img class="cart" src="../images/cart.png">
+    </div>
+    </div><br><br><br>
     <div class="cart-container">
         <div class="cart-items-section">
             <h2> Cart</h2><hr>
