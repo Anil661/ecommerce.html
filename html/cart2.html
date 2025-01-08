@@ -17,10 +17,12 @@
             display: flex;
             justify-content: space-between;
             padding-top: 30px;
+            
         }
         .cart-items-section {
             flex: 2;
             margin-right: 20px;
+            border: 1px solid;
         }
         .order-summary-section {
             flex: 1;
@@ -84,19 +86,32 @@
         }
         .empty-cart {
             text-align: center;
-            font-size: 20px;
+            font-size: 40px;
             margin-top: 50px;
             color: #666;
+        }
+        h2{
+            text-align: center;
+            font-size: 40px;
+        }
+        .shop{
+            margin-left: 450px;
+            margin-bottom: 10px;
+            height: 50px;
+            font-size: 18px;
+        }
+        .shop:hover{
+            background-color: #476a9b;
+            color: white;
         }
     </style>
 </head>
 <body>
     <div class="cart-container">
-        <!-- Cart Items Section -->
         <div class="cart-items-section">
-            <h2>Your Cart</h2>
+            <h2> Cart</h2><hr>
             <div id="cart-items"></div>
-            <button onclick="continueShopping()">Continue Shopping</button>
+            <button class="shop" onclick="continueShopping()">←Continue Shopping</button>
         </div>
 
         <!-- Order Summary Section -->
