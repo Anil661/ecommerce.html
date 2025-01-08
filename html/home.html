@@ -188,6 +188,14 @@
         .vals{
             font-size: 34px;
         }
+        .anil{
+            margin-left: 750px;
+            margin-top: 80px;
+        }
+        .lil1{
+            color:black;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -202,7 +210,7 @@
         <div class="box">
         <input type="button" value="Login" class="login" id="hii" href="">
         <input type="button" value="Register" class="reg" id="hlo" href="">
-        <input type="button" value="Cart" class="car" id="hmm" href=""><span class="zero" id="start">(0)</span>
+        <input type="button" value="Cart" class="car" id="hmm" href=""><span id="cart_amount" class="zero" id="start">(0)</span>
     </div>
     <div class="images">
     <img class="san" src="../images/sandy2.png">
@@ -224,6 +232,7 @@
         <button  class="btn" id="electronics" onclick="filterData('electronics',this)">Electronics</button>
       </nav>
       <div id="container"></div>
+      <p class="anil">Made with ❤️ by<a class="lil1"> Beluguppa Anil</a></p><br><br>
       <script>
         let allData = [];
     
@@ -242,6 +251,7 @@
         function displayProducts(products) {
             const container = document.getElementById("container");
             const containerCards = products.map((product) => {
+                let {image,title,price}=product
                 return `
                     <div class="productcard">
                         <img class="image" src="${product.image}" alt="${product.photo}">
@@ -250,18 +260,66 @@
                         <h4>$${product.price}</h4>
                         <hr>
                         <button id="detail">Details</button>
-                        <button id="detail">Add to Cart</button>
+                        <button id="detail"onclick="add_to_cart('${product.image}','${product.title}','${product.price}')">Add to Cart</button>
                     </div>
                 `;
             });
             container.innerHTML = containerCards.join("");
     
-        //     // Add event listeners to buttons
-            const buttons = container.querySelectorAll(".btn");
-            buttons.forEach((button) => {
-                button.addEventListener("click", handleButtonClick);
-            });
+        // //     // Add event listeners to buttons
+        //     const buttons = container.querySelectorAll(".btn");
+        //     buttons.forEach((button) => {
+        //         button.addEventListener("click", handleButtonClick);
+        //     });
         }
+        // let add_to_cart=(image,title,price)=>{
+        //     allData.push({
+        //         image:image,
+        //         title:title,
+        //         price:price
+        //     })
+        //     localStorage.setItem('data',JSON.stringify(allData))
+        // }
+        // let calculate=()=>{
+        //     let cart_icon=document.getElementById('cart_amount')
+        //     let cart_amount=allData.length
+        //     cart_icon.innerHTML=cart_amount
+        // }
+        // calculate()
+    //     if (action === "add-to-cart") {
+    //         addToCart(productId);
+    //     }
+    //     function addToCart(productId) {
+    //     const product = allData.find((item) => item.id == productId);
+    //     if (product) {
+    //         alert(`Added "${product.title}" to your cart!`);
+    //     }
+    // }
+         // Add product to cart
+    let add_to_cart = (image, title, price) => {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let product = { image, title, price, quantity: 1 };
+
+        // Check if product already exists in the cart
+        let existingProductIndex = cart.findIndex(item => item.title === title);
+        if (existingProductIndex !== -1) {
+            cart[existingProductIndex].quantity += 1;
+        } else {
+            cart.push(product);
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+    }
+
+    // Update the cart count in the header
+    let updateCartCount = () => {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let cartAmount = cart.reduce((total, item) => total + item.quantity, 0);
+        document.getElementById('cart_amount').textContent = `(${cartAmount})`;
+    }
+
+    updateCartCount(); 
     
         // Filter products based on category
         function filterData(category, button) {
