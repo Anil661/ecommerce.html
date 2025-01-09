@@ -6,13 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
     <style>
-             .layout{
-            margin-left: 600px;
+            .layout{
+            margin-left: 400px;
             padding: 20px;
             position: absolute;
-            margin-top: -70px;
+            margin-top: -50px;
             display: flex;
             column-gap: 40px; 
+        }
+        .chill{
+            font-size: 25px;
         }
         a{
             text-decoration: none;
@@ -26,12 +29,16 @@
             margin-left: 80px;
             font-size: 40px;
         }
+        .Ecommerce:hover{
+            color: blue;
+        }
         .body{
-            margin-top: 5px;
-            background-color: azure;
+            margin-top: -8px;
+            background-color: rgb(212, 231, 231);
             height: 100px;
             width: 1690px;
             border-top: 100px;
+            position: fixed;
         }
         .login{
             height: 40px;
@@ -42,49 +49,57 @@
         }
         .reg{
             height: 40px;
-            padding-left: 50px;
+            padding-left: 30px;
             width: 130px;
             font-size: 20px;
             border-radius: 5px;
         }
         .car{
             height: 40px;
-            padding-left: 50px;
+            padding-left: 15px;
             width: 130px;
             font-size: 20px;
             border-radius: 5px;
         }
-       
+        .butt{
+            height: 35px;
+            width: 120px;
+            border-radius: 5px;
+        }
+       .butt:hover{
+        background-color: rgb(92, 86, 86);
+        color: white;
+       }
         .zero{
             position: absolute;
-            margin-left: 458px;
-            margin-top: 10px;
+            margin-left: 0px;
+            margin-top: 0px;
         }
         .box{
-            margin-left: 1100px;
+            margin-left: 900px;
             padding: 20px;
             position: absolute;
-            margin-top: -80px;
+            margin-top: -55px;
             display: flex;
             column-gap: 50px;  
         }
         .san{
-            margin-left: 1135px;
+            margin-left: 930px;
             position: absolute;
-            margin-top: -55px;
+            margin-top: -30px;
         }
         img{
             height: 28px;
         }
         .regi{
-            margin-left: 1300px;
+            margin-left: 1100px;
             position: absolute;
-            margin-top: -55px;
+            margin-top: -30px;
         }
         .cart{
-            margin-left: 1485px;
+            margin-left: 1270px;
             position: absolute;
-            margin-top: -55px;
+            margin-top: -30px;
         }
         body {
             font-family: Arial, sans-serif;
@@ -255,6 +270,11 @@
         const loadCart = () => {
             return JSON.parse(localStorage.getItem('cart')) || [];
         };
+        const updateCartCount = () => {
+    const cart = loadCart();
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById("cart_amount").textContent = `(${totalItems})`;
+};
 
         const updateCartPage = () => {
             const cart = loadCart();
@@ -298,6 +318,7 @@
 
             cartItemsContainer.innerHTML = cartHtml;
             updateTotalPrice();
+            updateCartCount();
         };
 
         const updateQuantity = (index, action) => {
