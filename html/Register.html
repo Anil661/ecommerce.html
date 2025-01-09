@@ -6,12 +6,15 @@
     <title>login in javascript</title>
     <style>
          .layout{
-            margin-left: 600px;
+            margin-left: 400px;
             padding: 20px;
             position: absolute;
-            margin-top: -70px;
+            margin-top: -50px;
             display: flex;
             column-gap: 40px; 
+        }
+        .chill{
+            font-size: 25px;
         }
         a{
             text-decoration: none;
@@ -25,12 +28,16 @@
             margin-left: 80px;
             font-size: 40px;
         }
+        .Ecommerce:hover{
+            color: blue;
+        }
         .body{
-            margin-top: 5px;
-            background-color: azure;
+            margin-top: -8px;
+            background-color: rgb(212, 231, 231);
             height: 100px;
             width: 1690px;
             border-top: 100px;
+            position: fixed;
         }
         .login{
             height: 40px;
@@ -41,55 +48,57 @@
         }
         .reg{
             height: 40px;
-            padding-left: 50px;
+            padding-left: 30px;
             width: 130px;
             font-size: 20px;
             border-radius: 5px;
         }
         .car{
             height: 40px;
-            padding-left: 50px;
+            padding-left: 15px;
             width: 130px;
             font-size: 20px;
             border-radius: 5px;
         }
-        button{
+        .butt{
             height: 35px;
-            width: 135px;
+            width: 120px;
+            border-radius: 5px;
         }
+       .butt:hover{
+        background-color: rgb(92, 86, 86);
+        color: white;
+       }
         .zero{
             position: absolute;
-            margin-left:0px;
+            margin-left: 0px;
             margin-top: 0px;
         }
         .box{
-            margin-left: 1100px;
+            margin-left: 900px;
             padding: 20px;
             position: absolute;
-            margin-top: -80px;
+            margin-top: -55px;
             display: flex;
             column-gap: 50px;  
         }
-        button:hover{
-            background-color: darkmagenta;
-        }
         .san{
-            margin-left: 1145px;
+            margin-left: 930px;
             position: absolute;
-            margin-top: -55px;
+            margin-top: -30px;
         }
         img{
             height: 28px;
         }
         .regi{
-            margin-left: 1315px;
+            margin-left: 1100px;
             position: absolute;
-            margin-top: -55px;
+            margin-top: -30px;
         }
         .cart{
-            margin-left: 1495px;
+            margin-left: 1270px;
             position: absolute;
-            margin-top: -55px;
+            margin-top: -30px;
         }
         .address{
             margin-left: 650px;
@@ -130,25 +139,7 @@
     </style>
 </head>
 <body>
-    <div class="body">
-        <h1 class="Ecommerce">Ecommerce</h1>
-        <div class="layout">
-        <a href="home.html">Home</a>
-        <a href="products.html">Products</a>
-        <a href="about us.html">About</a>
-        <a href="contactus.html">Contact</a>
-        </div>
-        <div class="box">
-            <button><a class="login" id="hii" href="login.html">Login</a></button>
-            <button><a  class="reg" id="hlo" href="Register.html">Register</a></button>
-        <button><a class="car" id="hmm" href="cart2.html"> Cart<span class="zero" id="start">(0)</span></a></button>
-    </div>
-    <div class="images">
-    <img class="san" src="../images/sandy2.png">
-    <img class="regi" src="../images/registration.png">
-    <img class="cart" src="../images/cart.png">
-    </div>
-    </div><br><br><br>
+   
     <div class="address">
         <h3>Full Name</h3>
         <input class="enter" type="text" placeholder="Enter your name">
